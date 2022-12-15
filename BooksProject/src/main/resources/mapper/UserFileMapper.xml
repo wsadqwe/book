@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bb.booksproject.dao.UserFileMapper">
+  <resultMap id="BaseResultMap" type="com.bb.booksproject.pojo.UserFile">
+    <id column="id" jdbcType="INTEGER" property="id" />
+
+    <result column="times" jdbcType="VARCHAR" property="times" />
+    <result column="imgsrc" jdbcType="VARCHAR" property="imgsrc" />
+    <result column="txtsrc" jdbcType="VARCHAR" property="txtsrc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,  times, imgsrc, txtsrc
+  </sql>
+
+  <select id="queryAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userFile
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userFile
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userFile
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bb.booksproject.pojo.UserFile">
+    insert into userFile (id, times, imgsrc,   txtsrc)
+    values (#{id,jdbcType=INTEGER}, #{times,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR},
+      #{txtsrc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bb.booksproject.pojo.UserFile">
+    insert into userFile
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="times != null">
+        times,
+      </if>
+      <if test="imgsrc != null">
+        imgsrc,
+      </if>
+      <if test="txtsrc != null">
+        txtsrc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="times != null">
+        #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null">
+        #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="txtsrc != null">
+        #{txtsrc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bb.booksproject.pojo.UserFile">
+    update userFile
+    <set>
+      <if test="times != null">
+        times = #{times,jdbcType=VARCHAR},
+      </if>
+      <if test="imgsrc != null">
+        imgsrc = #{imgsrc,jdbcType=VARCHAR},
+      </if>
+      <if test="txtsrc != null">
+        txtsrc = #{txtsrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bb.booksproject.pojo.UserFile">
+    update userFile
+    set
+      times = #{times,jdbcType=VARCHAR},
+      imgsrc = #{imgsrc,jdbcType=VARCHAR},
+      txtsrc = #{txtsrc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
