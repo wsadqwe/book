@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bb.booksproject.dao.UserFileMapper">
   <resultMap id="BaseResultMap" type="com.bb.booksproject.pojo.UserFile">
-    <id column="id" jdbcType="INTEGER" property="id" />
 
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="author" jdbcType="VARCHAR" property="author"/>
     <result column="times" jdbcType="VARCHAR" property="times" />
     <result column="imgsrc" jdbcType="VARCHAR" property="imgsrc" />
     <result column="txtsrc" jdbcType="VARCHAR" property="txtsrc" />
   </resultMap>
   <sql id="Base_Column_List">
-    id,  times, imgsrc, txtsrc
+    id, author, times, imgsrc, txtsrc
   </sql>
 
   <select id="queryAll"  resultMap="BaseResultMap">
@@ -30,8 +31,8 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bb.booksproject.pojo.UserFile">
-    insert into userFile (id, times, imgsrc,   txtsrc)
-    values (#{id,jdbcType=INTEGER}, #{times,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR},
+    insert into userFile (id, author, times, imgsrc,   txtsrc)
+    values (#{id,jdbcType=INTEGER}, #{author,jdbcTye=VARCHAR}, #{times,jdbcType=VARCHAR}, #{imgsrc,jdbcType=VARCHAR},
       #{txtsrc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bb.booksproject.pojo.UserFile">
@@ -39,6 +40,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="author != null">
+        author,
       </if>
       <if test="times != null">
         times,
@@ -54,6 +58,9 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
       <if test="times != null">
         #{times,jdbcType=VARCHAR},
       </if>
@@ -68,6 +75,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bb.booksproject.pojo.UserFile">
     update userFile
     <set>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
       <if test="times != null">
         times = #{times,jdbcType=VARCHAR},
       </if>
@@ -83,6 +93,7 @@
   <update id="updateByPrimaryKey" parameterType="com.bb.booksproject.pojo.UserFile">
     update userFile
     set
+      author= #{author,jdbcType=VARCHAR},
       times = #{times,jdbcType=VARCHAR},
       imgsrc = #{imgsrc,jdbcType=VARCHAR},
       txtsrc = #{txtsrc,jdbcType=VARCHAR}

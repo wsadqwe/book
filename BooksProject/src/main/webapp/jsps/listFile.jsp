@@ -27,6 +27,7 @@
     <table class="table table-bordered" style="margin-top: 10px;">
         <tr class="success">
             <th>序号</th>
+            <th>作者名称</th>
             <th>上传时间</th>
             <th>图书图片</th>
             <th>图书txt</th>
@@ -37,12 +38,13 @@
         </tr>
         <c:forEach varStatus="vs" var="v" items="${list}">
             <tr class="">
+
                 <td>${vs.index+1 }</td>
+                <td>${v.author }</td>
                 <td>${v.times }</td>
                 <td>
                     <img src="${pageContext.request.contextPath}/uploadimg/${v.imgsrc}" width="50px" height="50px"/>
                 </td>
-
 
                 <td><a
                         href="${pageContext.request.contextPath}/UserFile/showtxt.do?id=${v.id}">查看</a>

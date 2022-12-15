@@ -34,6 +34,8 @@
 
     <form method="post"
           action="${pageContext.request.contextPath }/UserFile/add.do" enctype="multipart/form-data">
+        请输入您的名称
+        <input type="text" name="author" required><br/>
 
         请选择图书图片
         <input type="file" name="file" required><br><br>

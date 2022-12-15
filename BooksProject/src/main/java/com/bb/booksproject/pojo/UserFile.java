@@ -3,6 +3,8 @@ package com.bb.booksproject.pojo;
 public class UserFile {
     private Integer id;
 
+    private String  author;
+
     private String times;
 
     private String imgsrc;
@@ -15,6 +17,14 @@ public class UserFile {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getTimes() {
@@ -39,5 +49,15 @@ public class UserFile {
 
     public void setTxtsrc(String txtsrc) {
         this.txtsrc = txtsrc == null ? null : txtsrc.trim();
+    }
+    @Override
+    public String toString() {
+        return "UserFile{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", times='" + times + '\'' +
+                ", imgsrc='" + imgsrc + '\'' +
+                ", txtsrc='" + txtsrc + '\'' +
+                '}';
     }
 }

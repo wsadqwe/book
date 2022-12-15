@@ -36,8 +36,14 @@
 
 
         <input type="hidden" name="id" value="${v.id}"/>
+
         <input type="hidden" name="imgsrc" value="${v.imgsrc}"/>
         <input type="hidden" name="txtsrc" value="${v.txtsrc}"/>
+        请输入图书作者<input value="${v.author}"
+                      name="author" placeholder="图书作者 " required="required" type="text"
+                      class="form-control" required="required">
+        <br/>
+        <input type="hidden" name="id" value="${v.id}"/>
         请选择图书图片
         <input type="file" name="file" ><br><br>
         当前照片<img src="${pageContext.request.contextPath}/uploadimg/${v.imgsrc}" width="50px" height="50px"/>
